@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.autoprovisioning.ap-parent</groupId>
+        <artifactId>ap-parent</artifactId>
+        <version>1.13.1307</version>
+    </parent>
+
+    <groupId>com.ericsson.oss.autoprovisioning.macro</groupId>
+    <artifactId>ap-data-model-macro</artifactId>
+    <version>1.106.227</version>
+    <packaging>pom</packaging>
+    <name>[${project.artifactId}] Model project</name>
+
+    <modules>
+        <module>ap-data-model-cpp-schema</module>
+        <module>ap-data-model-erbs-jar</module>
+        <module>ap-data-model-erbs-model</module>
+        <module>ap-model-metadata-cli-cpp</module>
+        <module>ERICapdatamacro_CXP9030537</module>
+    </modules>
+
+    <scm>
+        <connection>${ericsson.scm.url}</connection>
+        <developerConnection>${ericsson.scm.url}</developerConnection>
+        <tag>ap-data-model-macro-1.106.227</tag>
+    </scm>
+
+    <properties>
+        <version.autoprovisioning.bom>1.13.6868</version.autoprovisioning.bom>
+        <!-- Temporary work-around for issue where ap-parent appears in connection when using scm entries from parent pom -->
+        <ericsson.scm.url>scm:git:[fetch=]ssh://gerritmirror-ha.lmera.ericsson.se:29418/OSS/com.ericsson.oss.autoprovisioning.macro/ap-data-model-macro[push=]ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.oss.autoprovisioning.macro/ap-data-model-macro</ericsson.scm.url>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                <artifactId>autoprovisioning-bom</artifactId>
+                <version>${version.autoprovisioning.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Versions for all child modules must be specified here, to ensure that correct dependency versions are injected for the internal module 
+                dependencies in this repository, and not being overwritten by versions in the autoprovisioning-bom -->
+            <dependency>
+                <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                <artifactId>ap-data-model-cpp-schema</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                <artifactId>ap-data-model-erbs-jar</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                <artifactId>ap-data-model-erbs-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                <artifactId>ap-model-metadata-cli-cpp</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

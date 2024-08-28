@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="Dhcp">
+        <xs:sequence>
+            <xs:element name="initialIpAddress" type="FilledString" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="defaultRouter" type="Ipv4orIpv6" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ntpServer" type="Ipv4orIpv6" minOccurs="0" maxOccurs="2"/>
+            <xs:element name="dnsServer" type="Ipv4orIpv6" minOccurs="0" maxOccurs="3"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="FilledString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

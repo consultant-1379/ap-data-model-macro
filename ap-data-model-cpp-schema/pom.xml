@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.autoprovisioning.macro</groupId>
+        <artifactId>ap-data-model-macro</artifactId>
+        <version>1.106.227</version>
+    </parent>
+
+    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+    <artifactId>ap-data-model-cpp-schema</artifactId>
+    <name>[${project.parent.artifactId}] Schema ZIP module</name>
+
+    <dependencies>
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-ap-data-model-cpp-schema</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <!-- Unpack ap-data-model-core schemas -->
+                                <artifactItem>
+                                    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                                    <artifactId>ap-data-model-core-schema</artifactId>
+                                    <version>${version.ap.data.model.core}</version>
+                                    <type>zip</type>
+                                    <classifier>xml</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>target/core-schemas</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <attach>false</attach>
+                            <descriptors>
+                                <descriptor>src/assembly/erbs/batch-project.xml</descriptor>
+                            </descriptors>
+                            <finalName>batch-project</finalName>
+                            <outputDirectory>target/schemadata/samples/erbs/default/</outputDirectory>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                        <id>make-erbs-batch-example</id>
+                        <!-- this is used for inheritance merges -->
+                        <phase>package</phase>
+                        <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <configuration>
+                            <attach>false</attach>
+                            <descriptors>
+                                <descriptor>src/assembly/erbs/standard-project.xml</descriptor>
+                            </descriptors>
+                            <finalName>standard-project</finalName>
+                            <outputDirectory>target/schemadata/samples/erbs/default/</outputDirectory>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                        <id>make-erbs-standard-example</id>
+                        <!-- this is used for inheritance merges -->
+                        <phase>package</phase>
+                        <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/schemas.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <id>make-schemas-assembly</id>
+                        <!-- this is used for inheritance merges -->
+                        <phase>package</phase>
+                        <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/schemadata/samples/</directory>
+            </testResource>
+            <testResource>
+                <directory>${project.basedir}/src/schemadata/schemas/</directory>
+            </testResource>
+            <testResource>
+                <directory>${project.basedir}/src/schemadata/schemas/ap/</directory>
+            </testResource>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>${project.basedir}/target/core-schemas/schemadata/schemas/core/default</directory>
+            </testResource>
+        </testResources>
+    </build>
+</project>

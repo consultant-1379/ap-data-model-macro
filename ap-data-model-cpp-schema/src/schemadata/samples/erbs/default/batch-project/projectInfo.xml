@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sample files are for reference only and need to be reworked to suit network configuration requirements -->
+<!-- For more information about the tags in this file, refer to the ENM Auto Provisioning Online Help Center -->
+<projectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProjectInfo.xsd">
+
+    <name>Batch_ERBS_Project</name>
+    <description>Example batch project with ERBS nodes</description>
+    <creator>Ericsson</creator>
+
+</projectInfo>

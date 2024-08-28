@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<nodeInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="NodeInfo.xsd">
+
+    <name>%NodeName%</name>
+    <nodeIdentifier>%NodeIdentifier%</nodeIdentifier>
+    <ipAddress>%NodeIpAddress%</ipAddress>
+    <nodeType>%NodeType%</nodeType>
+    <userLabel>%UserLabel%</userLabel>
+    <hardwareSerialNumber>%HardwareSerialNumber%</hardwareSerialNumber>
+    <ossPrefix>%OssPrefix%</ossPrefix>
+    <timeZone>%TimeZone%</timeZone>
+
+    <autoIntegration>
+        <upgradePackageName>%AutoIntegrationPackage%</upgradePackageName>
+        <unlockCells>%AutoIntegrationBoolean%</unlockCells>
+        <uploadCVAfterIntegration>true</uploadCVAfterIntegration>
+    </autoIntegration>
+
+    <license>
+        <installLicense>%InstallLicense%</installLicense>
+        <activateLicense>true</activateLicense>
+    </license>
+
+    <security>
+        <minimumSecurityLevel>%MinimumSecurityLevel%</minimumSecurityLevel>
+        <optimumSecurityLevel>%OptimumSecurityLevel%</optimumSecurityLevel>
+        <enrollmentMode>%EnrollmentMode%</enrollmentMode>
+        <ipSecurity>
+            <ipSecLevel>%IpSecLevel%</ipSecLevel>
+            <subjectAltNameType>%IpSubjectAltNameType%</subjectAltNameType>
+            <subjectAltName>%IpSubjectAltName%</subjectAltName>
+        </ipSecurity>
+        <!-- Target Groups is optional see Target Group Management for more information -->
+        <targetGroups>
+            <targetGroup>%SecurityTargetGroup%</targetGroup>
+            <targetGroup>SampleTargetGroup2</targetGroup>
+        </targetGroups>
+    </security>
+
+    <!--location configuration is optional -->
+    <location>
+        <latitude>%Latitude%</latitude>
+        <longitude>%Longitude%</longitude>
+    </location>
+
+    <supervision>
+        <fm>disabled</fm>
+        <pm>%SupvisionStatus%</pm>
+        <inventory>disabled</inventory>
+        <managementState>%SupvisionManagementState%</managementState>
+    </supervision>
+
+    <users>
+        <secureUser>
+            <name>secureUser</name>
+            <password>securePassword</password>
+        </secureUser>
+    </users>
+
+    <artifacts>
+        <siteBasic>%Artifact%</siteBasic>
+        <siteInstallation>siteInstallation.xml</siteInstallation>
+        <siteEquipment>siteEquipment.xml</siteEquipment>
+        <!-- Configurations are applied in order defined in xml -->
+        <configurations>
+            <configuration>%ArtifactConfiguration%</configuration>
+        </configurations>
+    </artifacts>
+
+    <dhcp>
+        <initialIpAddress>%DhcpInitialIpAddress%</initialIpAddress>
+        <defaultRouter>%DhcpDefaultRouter%</defaultRouter>
+        <ntpServer>%DhcpNtpServer%</ntpServer>
+        <dnsServer>%DhcpDnsServer%</dnsServer>
+    </dhcp>
+
+</nodeInfo>

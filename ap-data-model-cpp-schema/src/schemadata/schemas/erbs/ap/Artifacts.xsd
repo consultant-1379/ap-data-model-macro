@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="Artifacts">
+        <xs:all>
+            <xs:element name="siteBasic" type="NonEmptyString" minOccurs="1" />
+            <xs:element name="siteEquipment" type="NonEmptyString" minOccurs="1" />
+            <xs:element name="siteInstallation" type="NonEmptyString" minOccurs="1" />
+            <xs:element name="configurations" type="configurations" minOccurs="1" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="configurations">
+        <xs:annotation>
+            <xs:documentation>
+                Bulk configuration files to be imported during integration. The config files will be imported in the order in which they are declared.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="configuration" type="NonEmptyString" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

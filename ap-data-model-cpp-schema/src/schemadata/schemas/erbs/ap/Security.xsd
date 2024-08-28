@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="Security">
+        <xs:all>
+            <xs:element name="minimumSecurityLevel" type="SecurityLevel" minOccurs="1"/>
+            <xs:element name="optimumSecurityLevel" type="SecurityLevel" minOccurs="1"/>
+            <xs:element name="enrollmentMode" type="EnrollmentMode" minOccurs="1"/>
+            <xs:element name="ipSecurity" type="IPSecurity" minOccurs="0"/>
+            <xs:element name="targetGroups" type="TargetGroups" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="IPSecurity">
+        <xs:all>
+            <xs:element name="ipSecLevel" type="IPSecLevel" minOccurs="1"/>
+            <xs:element name="subjectAltNameType" type="SubjectAltNameType" minOccurs="1"/>
+            <xs:element name="subjectAltName" type="StringWithoutWhiteSpace" minOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="IPSecLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CUS"/>
+            <xs:enumeration value="OAM"/>
+            <xs:enumeration value="CUSOAM"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SubjectAltNameType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IPV4"/>
+            <xs:enumeration value="IPV6"/>
+            <xs:enumeration value="FQDN"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SecurityLevel">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EnrollmentMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SCEP"/>
+            <xs:enumeration value="CMPv2_VC"/>
+            <xs:enumeration value="CMPv2_INITIAL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="TargetGroups">
+        <xs:sequence>
+            <xs:element name="targetGroup" type="NonEmptyString" maxOccurs="unbounded" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

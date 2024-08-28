@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+
+    <id>xml</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <fileSets>
+        <!-- ******************* ERBS Samples ********************** -->
+        <fileSet>
+            <directory>target/schemadata/samples/erbs/default</directory>
+            <includes>
+                <include>/*.zip</include>
+            </includes>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/samples/erbs/default</outputDirectory>
+        </fileSet>
+
+        <!-- ******************* Default Schemas ********************** -->
+
+        <!-- Add ap common schemas to default directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/ap</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/default</outputDirectory>
+        </fileSet>
+
+        <!-- Add default core schemas to default directory -->
+        <fileSet>
+            <directory>target/core-schemas/schemadata/schemas/core/default</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/default</outputDirectory>
+        </fileSet>
+
+        <!-- ******************* 16B ERBS Nodes ********************** -->
+
+        <!-- Add version specific schemas to g.1.220 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/g.1.220</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/g.1.220</outputDirectory>
+        </fileSet>
+        <!-- end g.1.220 schemas -->
+
+        <!-- Add version specific schemas to g.1.240 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/g.1.240</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/g.1.240</outputDirectory>
+        </fileSet>
+        <!-- end g.1.240 schemas -->
+
+        <!-- Add version specific schemas to g.1.260 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/g.1.260</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/g.1.260</outputDirectory>
+        </fileSet>
+        <!-- end g.1.260 schemas -->
+
+        <!-- Add version specific schemas to g.1.281 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/g.1.281</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/g.1.281</outputDirectory>
+        </fileSet>
+        <!-- end g.1.281 schemas -->
+
+        <!-- Add version specific schemas to g.1.301 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/g.1.301</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/g.1.301</outputDirectory>
+        </fileSet>
+        <!-- end g.1.301 schemas -->
+
+        <!-- Add version specific schemas to g.1.308 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/g.1.308</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/g.1.308</outputDirectory>
+        </fileSet>
+        <!-- end g.1.308 schemas -->
+
+        <!-- ******************* 17A ERBS Nodes ********************** -->
+
+        <!-- Add version specific schemas to h.1.20 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.20</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.20</outputDirectory>
+        </fileSet>
+        <!-- end h.1.20 schemas -->
+
+        <!-- Add version specific schemas to h.1.40 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.40</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.40</outputDirectory>
+        </fileSet>
+        <!-- end h.1.40 schemas -->
+
+        <!-- Add version specific schemas to h.1.60 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.60</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.60</outputDirectory>
+        </fileSet>
+        <!-- end h.1.60 schemas -->
+
+        <!-- Add version specific schemas to h.1.80 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.80</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.80</outputDirectory>
+        </fileSet>
+        <!-- end h.1.80 schemas -->
+
+        <!-- Add version specific schemas to h.1.120 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.120</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.120</outputDirectory>
+        </fileSet>
+        <!-- end h.1.120 schemas -->
+
+        <!-- Add version specific schemas to h.1.140 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.140</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.140</outputDirectory>
+        </fileSet>
+        <!-- end h.1.140 schemas -->
+
+        <!-- Add version specific schemas to h.1.160 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.160</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.160</outputDirectory>
+        </fileSet>
+        <!-- end h.1.160 schemas -->
+
+        <!-- ******************* 17B ERBS Nodes ********************** -->
+
+        <!-- Add version specific schemas to h.1.220 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.220</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.220</outputDirectory>
+        </fileSet>
+        <!-- end h.1.220 schemas -->
+
+        <!-- Add version specific schemas to h.1.240 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.240</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.240</outputDirectory>
+        </fileSet>
+        <!-- end h.1.240 schemas -->
+
+        <!-- Add version specific schemas to h.1.260 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.260</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.260</outputDirectory>
+        </fileSet>
+        <!-- end h.1.260 schemas -->
+
+        <!-- ******************* L17.Q2 ERBS Nodes ********************** -->
+
+        <!-- Add version specific schemas to h.1.281 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.281</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.281</outputDirectory>
+        </fileSet>
+        <!-- end h.1.281 schemas -->
+
+        <!-- Add version specific schemas to h.1.300 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.300</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.300</outputDirectory>
+        </fileSet>
+        <!-- end h.1.300 schemas -->
+
+        <!-- Add version specific schemas to h.1.320 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.320</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.320</outputDirectory>
+        </fileSet>
+        <!-- end h.1.320 schemas -->
+
+        <!-- Add version specific schemas to h.1.340 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.340</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.340</outputDirectory>
+        </fileSet>
+        <!-- end h.1.340 schemas -->
+
+        <!-- Add version specific schemas to h.1.361 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/h.1.361</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/h.1.361</outputDirectory>
+        </fileSet>
+        <!-- end h.1.361 schemas -->
+
+        <!-- ******************* L17.Q3 ERBS Nodes ********************** -->
+
+        <!-- Add version specific schemas to j.1.22 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.22</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.22</outputDirectory>
+        </fileSet>
+        <!-- end j.1.22 schemas -->
+
+        <!-- Add version specific schemas to j.1.40 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.40</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.40</outputDirectory>
+        </fileSet>
+        <!-- end j.1.40 schemas -->
+
+        <!-- Add version specific schemas to j.1.80 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.80</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.80</outputDirectory>
+        </fileSet>
+        <!-- end j.1.80 schemas -->
+
+        <!-- ******************* L17.Q4 ERBS Nodes ********************** -->
+
+        <!-- Add version specific schemas to j.1.120 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.120</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.120</outputDirectory>
+        </fileSet>
+        <!-- end j.1.120 schemas -->
+
+        <!-- Add version specific schemas to j.1.140 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.140</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.140</outputDirectory>
+        </fileSet>
+        <!-- end j.1.140 schemas -->
+
+        <!-- Add version specific schemas to j.1.160 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.160</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.160</outputDirectory>
+        </fileSet>
+        <!-- end j.1.160 schemas -->
+
+        <!-- Add version specific schemas to j.1.180 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.180</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.180</outputDirectory>
+        </fileSet>
+        <!-- end j.1.180 schemas -->
+
+        <!-- Add version specific schemas to j.1.220 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.220</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.220</outputDirectory>
+        </fileSet>
+        <!-- end j.1.220 schemas -->
+
+        <!-- Add version specific schemas to j.1.240 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.240</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.240</outputDirectory>
+        </fileSet>
+        <!-- end j.1.240 schemas -->
+
+        <!-- Add version specific schemas to j.1.261 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.1.261</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.1.261</outputDirectory>
+        </fileSet>
+        <!-- end j.1.261 schemas -->
+
+        <!-- Add version specific schemas to j.2.250 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.2.250</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.2.250</outputDirectory>
+        </fileSet>
+        <!-- End j.2.250 schemas -->
+
+        <!-- Add version specific schemas to j.2.350 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.2.350</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.2.350</outputDirectory>
+        </fileSet>
+        <!-- End j.2.350 schemas -->
+
+        <!-- Add version specific schemas to j.2.450 directory -->
+        <fileSet>
+            <directory>src/schemadata/schemas/erbs/j.2.450</directory>
+            <fileMode>775</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>schemadata/schemas/erbs/j.2.450</outputDirectory>
+        </fileSet>
+        <!-- End j.2.450 schemas -->
+    </fileSets>
+</assembly>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RbsSiteInstallationFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="SiteInstallation.xsd">
+    <Format revision="H"/>
+    <InstallationData logicalName="%NodeName%" vlanId="3100" rbsIntegrationCode="%rbsIntegrationCode%">
+    </InstallationData>
+
+    <!-- Reference CPI Library (EN/LZN 793 1000) for applicable example file -->
+
+</RbsSiteInstallationFile>

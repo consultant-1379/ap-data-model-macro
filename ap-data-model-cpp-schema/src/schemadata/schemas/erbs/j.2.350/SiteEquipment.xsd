@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ProductNumber  = 'CXC2010174/1'       R-State='R54A02'
+DocumentNumber = '4/155 19-CSH 103 701'
+Node version: 19.Q1
+
+File    : SiteEquipment.xsd
+Purpose : Schema file for Site Equipment File
+Format  : Revision ='BM'
+
+Modified: Oct 18 2018
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+    <xs:simpleType name="YesOrNo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="YES" />
+            <xs:enumeration value="NO" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TrueOrFalse">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRUE" />
+            <xs:enumeration value="FALSE" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="State">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LOCKED" />
+            <xs:enumeration value="UNLOCKED" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DuName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(DU-)[1-9][0-9]*" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="climateSystemEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="STANDARD" />
+            <xs:enumeration value="EXTENDED" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="climateRegulationSystemEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOT_APPLICABLE" />
+            <xs:enumeration value="DAC" />
+            <xs:enumeration value="TS" />
+            <xs:enumeration value="HEX" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="climateControlModeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NORMAL" />
+            <xs:enumeration value="BATTERY_LIFE_EXTENSION" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="batterytype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TYPE01" />
+            <xs:enumeration value="TYPE02" />
+            <xs:enumeration value="UNKNOWN" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="batterytestmode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AUTOMATIC" />
+            <xs:enumeration value="CONFIGURED" />
+            <xs:enumeration value="DISABLED" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="months">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="JANUARY" />
+            <xs:enumeration value="FEBRUARY" />
+            <xs:enumeration value="MARCH" />
+            <xs:enumeration value="APRIL" />
+            <xs:enumeration value="MAY" />
+            <xs:enumeration value="JUNE" />
+            <xs:enumeration value="JULY" />
+            <xs:enumeration value="AUGUST" />
+            <xs:enumeration value="SEPTEMBER" />
+            <xs:enumeration value="OCTOBER" />
+            <xs:enumeration value="NOVEMBER" />
+            <xs:enumeration value="DECEMBER" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="anuTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IUANT" />
+            <xs:enumeration value="ASC" />
+            <xs:enumeration value="ERET" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="iauntDeviceTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1" />
+            <xs:enumeration value="2" />
+            <xs:enumeration value="17" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="perceivedSeverityEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CRITICAL" />
+            <xs:enumeration value="MAJOR" />
+            <xs:enumeration value="MINOR" />
+            <xs:enumeration value="WARNING" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tmaTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TMA" />
+            <xs:enumeration value="TMF" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ConnectionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AUX_Port" />
+            <xs:enumeration value="EC_Port" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RbsTransportType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOT_SET" />
+            <xs:enumeration value="CPRI_OVER_DWDM_LINEAR" />
+            <xs:enumeration value="CPRI_OVER_DWDM_RING" />
+            <xs:enumeration value="CPRI_OVER_CWDM_LINEAR" />
+            <xs:enumeration value="CPRI_OVER_CWDM_RING" />
+            <xs:enumeration value="CPRI_OVER_MICROWAVE_PTOP" />
+            <xs:enumeration value="CPRI_OVER_MICROWAVE_PTOM" />
+            <xs:enumeration value="CPRI_OVER_GIGABIT_ETHERNET" />
+            <xs:enumeration value="CPRI_OVER_DIRECT_CABLE" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FronthaulDeviceLineRateType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOT_SET" />
+            <xs:enumeration value="CPRI_LINE_RATE_2" />
+            <xs:enumeration value="CPRI_LINE_RATE_3" />
+            <xs:enumeration value="CPRI_LINE_RATE_5" />
+            <xs:enumeration value="CPRI_LINE_RATE_7" />
+            <xs:enumeration value="CPRI_LINE_RATE_8" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SupportedOperatingMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LTE_5MHZ" />
+            <xs:enumeration value="LTE_10MHZ" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EsfFirstSecond">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FIRST" />
+            <xs:enumeration value="SECOND" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="Month">
+        <xs:complexType>
+            <xs:attribute name="name" type="months" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EcPort">
+        <xs:complexType>
+            <xs:attribute name="ecPortId" type="xs:string" use="required" />
+            <xs:attribute name="hubPosition" type="xs:string" use="optional" />
+            <xs:attribute name="cascadingOrder" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="0" />
+                        <xs:maxInclusive value="7" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ecBusRef" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RiPort">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:string" use="required" />
+            <xs:attribute name="ref" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AlarmPort">
+        <xs:complexType>
+            <xs:attribute name="alarmPortId" type="xs:string" use="required" />
+            <xs:attribute default="" name="alarmSlogan" type="xs:string" />
+            <xs:attribute name="normallyOpen" type="TrueOrFalse" use="optional" />
+            <xs:attribute default="MINOR" name="perceivedSeverity" type="perceivedSeverityEnum" />
+            <xs:attribute name="administrativeState" type="State" use="optional" default="LOCKED" />
+            <xs:attribute name="alarmInExternalMe" type="TrueOrFalse" use="optional" default="FALSE" />
+            <xs:attribute default="550" name="probableCause">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="0" />
+                        <xs:maxInclusive value="574" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="IplPort">
+        <xs:complexType>
+            <xs:attribute name="iplPortId" type="xs:string" use="required" />
+            <xs:attribute name="remoteIplPortRef" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RetSubUnit">
+        <xs:complexType>
+            <xs:attribute name="retSubUnitId" type="xs:string" use="required" />
+            <xs:attribute name="antennaSubunitRef" type="xs:string" use="required" />
+            <xs:attribute default="0" name="electricalAntennaTilt" type="xs:int" />
+            <xs:attribute name="antennaConfigurationFile" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RaeSubUnit">
+        <xs:complexType>
+            <xs:attribute name="raeSubUnitId" type="xs:string" use="required" />
+            <xs:attribute name="antennaSubunitRef" type="xs:string" use="required" />
+            <xs:attribute name="userLabel" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="InterPiuLink">
+        <xs:complexType>
+            <xs:attribute name="ref" type="DuName" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SiteEquipment">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Format">
+                    <xs:complexType>
+                        <xs:attribute name="revision" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="K" />
+                                    <xs:enumeration value="L" />
+                                    <xs:enumeration value="M" />
+                                    <xs:enumeration value="N" />
+                                    <xs:enumeration value="O" />
+                                    <xs:enumeration value="P" />
+                                    <xs:enumeration value="Q" />
+                                    <xs:enumeration value="R" />
+                                    <xs:enumeration value="S" />
+                                    <xs:enumeration value="T" />
+                                    <xs:enumeration value="U" />
+                                    <xs:enumeration value="V" />
+                                    <xs:enumeration value="X" />
+                                    <xs:enumeration value="Y" />
+                                    <xs:enumeration value="Z" />
+                                    <xs:enumeration value="AA" />
+                                    <xs:enumeration value="AB" />
+                                    <xs:enumeration value="AC" />
+                                    <xs:enumeration value="AD" />
+                                    <xs:enumeration value="AE" />
+                                    <xs:enumeration value="AF" />
+                                    <xs:enumeration value="AG" />
+                                    <xs:enumeration value="AH" />
+                                    <xs:enumeration value="AJ" />
+                                    <xs:enumeration value="AK" />
+                                    <xs:enumeration value="AL" />
+                                    <xs:enumeration value="AM" />
+                                    <xs:enumeration value="AN" />
+                                    <xs:enumeration value="AO" />
+                                    <xs:enumeration value="AS" />
+                                    <xs:enumeration value="AT" />
+                                    <xs:enumeration value="AU" />
+                                    <xs:enumeration value="AU1" />
+                                    <xs:enumeration value="AV" />
+                                    <xs:enumeration value="AX" />
+                                    <xs:enumeration value="AY" />
+                                    <xs:enumeration value="AZ" />
+                                    <xs:enumeration value="BA" />
+                                    <xs:enumeration value="BB" />
+                                    <xs:enumeration value="BC" />
+                                    <xs:enumeration value="BD" />
+                                    <xs:enumeration value="BE" />
+                                    <xs:enumeration value="BF" />
+                                    <xs:enumeration value="BG" />
+                                    <xs:enumeration value="BH" />
+                                    <xs:enumeration value="BJ" />
+                                    <xs:enumeration value="BK" />
+                                    <xs:enumeration value="BL" />
+                                    <xs:enumeration value="BM" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="NodeData">
+                    <xs:complexType>
+                        <xs:attribute default="" name="site" type="xs:string" />
+                        <xs:attribute name="lmtPorts" type="State" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="RiLink">
+                    <xs:complexType>
+                        <xs:attribute name="fronthaulDeviceLineRate" type="FronthaulDeviceLineRateType" use="optional" default="NOT_SET" />
+                        <xs:attribute name="transportType" type="RbsTransportType" use="optional" default="NOT_SET" />
+                        <xs:attribute name="riPortRef1" type="xs:string" use="required" />
+                        <xs:attribute name="riPortRef2" type="xs:string" use="required" />
+                        <xs:attribute name="riLinkId" type="xs:string" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="DigitalEquipment">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="1" maxOccurs="unbounded" name="DigitalUnit">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- This RiPort is for IDL2 link between two DUs -->
+                                        <!-- Only ports "C" and above can be used for IDL2 link -->
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="RiPort" />
+                                        <!-- This is for IDL1 link between two DUs -->
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="InterPiuLink" />
+                                    </xs:sequence>
+                                    <xs:attribute name="unitId" type="DuName" use="required" />
+                                    <xs:attribute name="positionRef" type="xs:string" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="CommonSupportSystem">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" maxOccurs="7" name="Cabinet">
+                                <xs:complexType>
+                                    <xs:attribute name="cabinetId" type="xs:string" use="required" />
+                                    <xs:attribute name="climateSystem" type="climateSystemEnum" use="optional" />
+                                    <xs:attribute name="climateRegulationSystem" type="climateRegulationSystemEnum" use="optional" />
+                                    <xs:attribute name="positionRef" type="xs:string" use="optional" />
+                                    <xs:attribute name="smokeDetector" type="TrueOrFalse" use="optional" default="FALSE" />
+                                    <xs:attribute name="sharedCabinetIdentifier" type="xs:string" use="optional" />
+                                    <xs:attribute name="userLabel" type="xs:string" use="optional" />
+                                    <xs:attribute name="alarmInExternalMe" type="TrueOrFalse" use="optional" default="FALSE" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="7" name="ClimateSystem">
+                                <xs:complexType>
+                                    <xs:attribute name="climateSystemId" type="xs:string" use="required" />
+                                    <xs:attribute name="climateControlMode" type="climateControlModeType" use="optional" />
+                                    <xs:attribute name="controlDomainRef" type="xs:string" use="optional" />
+                                    <xs:attribute name="parentEsf" type="EsfFirstSecond" use="optional" default="FIRST" />
+                                    <xs:attribute name="fanSpeedSupervision" type="xs:int" use="optional" default="12" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="7" name="PowerSystem">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="TestStartMonths">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="12" ref="Month" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="controlDomainRef" type="xs:string" use="optional" />
+                                    <xs:attribute name="batteryInstallationDate" type="xs:string" use="optional" />
+                                    <xs:attribute name="batteryType" type="batterytype" use="optional" />
+                                    <xs:attribute name="minimumBackupTime" type="xs:int" use="optional" />
+                                    <xs:attribute name="minimumStateOfHealth" type="xs:int" use="optional" />
+                                    <xs:attribute name="sharedBattery" type="TrueOrFalse" use="optional" />
+                                    <xs:attribute name="testMode" type="batterytestmode" use="optional" />
+                                    <xs:attribute name="testStartDay" type="xs:int" use="optional" />
+                                    <xs:attribute name="testStartTime" type="xs:string" use="optional" />
+                                    <xs:attribute name="multiplePowerSystem" type="TrueOrFalse" use="optional" default="TRUE" />
+                                    <xs:attribute name="parentEsf" type="EsfFirstSecond" use="optional" default="FIRST" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="HwUnit">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="AlarmPort" />
+                                        <xs:element minOccurs="0" ref="EcPort" />
+                                    </xs:sequence>
+                                    <xs:attribute name="unitType" type="xs:string" use="required" />
+                                    <xs:attribute name="positionRef" type="xs:string" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="PlugInUnit">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" ref="EcPort" />
+                                    </xs:sequence>
+                                    <xs:attribute name="unitId" type="DuName" use="required" />
+                                    <xs:attribute name="positionRef" type="xs:string" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="7" name="ExternalNode">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" maxOccurs="2" ref="EcPort" />
+                                    </xs:sequence>
+                                    <xs:attribute name="externalNodeId" type="xs:string" use="required" />
+                                    <xs:attribute name="equipmentSupportFunctionRef" type="EsfFirstSecond" use="optional" default="FIRST" />
+                                    <xs:attribute name="inciConnectorRef" use="optional" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="7" name="EcBus">
+                                <xs:complexType>
+                                    <xs:attribute name="ecBusId" type="xs:string" use="required" />
+                                    <xs:attribute name="ecBusConnectorRef" type="xs:string" use="required" />
+                                    <xs:attribute name="connectionType" type="ConnectionType" use="optional" />
+                                    <xs:attribute name="equipmentSupportFunctionRef" type="EsfFirstSecond" use="optional" default="FIRST" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="autoCreateExternalNodes" type="TrueOrFalse" use="optional" default="TRUE" />
+                        <xs:attribute name="climateSystem" type="climateSystemEnum" use="optional" />
+                        <xs:attribute name="climateRegulationSystem" type="climateRegulationSystemEnum" use="optional" />
+                        <xs:attribute name="supportSystemControl" type="TrueOrFalse" use="optional" />
+                        <xs:attribute name="autoCreateUnits" type="TrueOrFalse" use="optional" />
+                        <xs:attribute name="climateControlMode" type="climateControlModeType" use="optional" />
+                        <xs:attribute name="smokeDetector" type="TrueOrFalse" use="optional" default="FALSE" />
+                        <xs:attribute default="RBS6201" name="cabinetType" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="SectorEquipment">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="RadioEquipment">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:choice>
+                                            <xs:element maxOccurs="unbounded" name="RadioUnit">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="EcPort" />
+                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="AlarmPort" />
+                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="RiPort" />
+                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IplPort" />
+                                                    </xs:sequence>
+                                                    <xs:attribute name="unitId" type="xs:string" use="required" />
+                                                    <xs:attribute name="primaryPort" type="xs:string" use="optional" />
+                                                    <xs:attribute name="secondaryPort" type="xs:string" use="optional" />
+                                                    <!-- Exactly one of primaryPort or secondaryPort has to be set. -->
+                                                    <xs:attribute name="positionRef" type="xs:string" use="optional" />
+                                                    <xs:attribute name="isSharedWithExternalMe" type="TrueOrFalse" use="optional" default="FALSE" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element maxOccurs="unbounded" name="AirUnit">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="EcPort" />
+                                                        <xs:element minOccurs="0" maxOccurs="4" name="AntennaCtrlDevice">
+                                                            <xs:complexType>
+                                                                <xs:sequence>
+                                                                    <xs:element minOccurs="0" maxOccurs="4" ref="RetSubUnit" />
+                                                                </xs:sequence>
+                                                                <xs:attribute name="antennaCtrlDeviceId" type="xs:string" use="required" />
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="unitId" type="xs:string" use="required" />
+                                                    <xs:attribute name="primaryPort" type="xs:string" use="optional" />
+                                                    <xs:attribute name="secondaryPort" type="xs:string" use="optional" />
+                                                    <!-- Exactly one of primaryPort or secondaryPort has to be set. -->
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:choice>
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" name="RadioDotUnit">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="unbounded" ref="EcPort" />
+                                                    <xs:element minOccurs="0" maxOccurs="1" name="positionCoordinates">
+                                                        <xs:complexType>
+                                                            <xs:attribute default="0" name="longitude">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:long">
+                                                                        <xs:minInclusive value="-180000000" />
+                                                                        <xs:maxInclusive value="180000000" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute default="0" name="latitude">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:long">
+                                                                        <xs:minInclusive value="-90000000" />
+                                                                        <xs:maxInclusive value="90000000" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute default="0" name="altitude">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:long">
+                                                                        <xs:minInclusive value="-8388608" />
+                                                                        <xs:maxInclusive value="8388607" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute default="WGS84" name="geoDatum">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:length value="5" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!-- This is more like an attribute, which belongs to AuxPlugInUnit
+                                                      MO, use element instead of attribute is due to attribute is not possible to define complex
+                                                      type -->
+                                                </xs:sequence>
+                                                <xs:attribute name="unitId" type="xs:string" use="required" />
+                                                <xs:attribute name="rdiPortRef" type="xs:string" use="required" />
+                                                <xs:attribute name="positionInformation" type="xs:string" use="optional" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="AntennaEquipment">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- For AIR naming rule RfBranchRef="<antenna unit group>-<AIR unit>-<antenna path>" -->
+                                        <xs:element maxOccurs="24" name="RfBranchRef">
+                                            <xs:complexType>
+                                                <xs:attribute name="rfBranchId" type="xs:string" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="sectorFunctionId" type="xs:string" use="required" />
+                        <xs:attribute name="mixedModeRadio" type="TrueOrFalse" use="optional" />
+                        <xs:attribute default="0" name="configuredOutputPower" type="xs:int" />
+                        <xs:attribute name="txPowerPersistentLock" type="TrueOrFalse" use="optional" default="FALSE" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="CommonAntennaSystem">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="24" name="AntennaUnitGroup">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" maxOccurs="8" name="AntennaUnit">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="8" name="AntennaSubunit">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element minOccurs="0" maxOccurs="8" name="AuPort">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="auPortId" type="xs:string" use="required" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="antennaSubunitId" type="xs:string" use="required" />
+                                                            <xs:attribute default="0" name="minTotalTilt" type="xs:int" />
+                                                            <xs:attribute default="0" name="maxTotalTilt" type="xs:int" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="antennaUnitId" type="xs:string" use="required" />
+                                                <xs:attribute default="0" name="mechanicalAntennaTilt" type="xs:int" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" maxOccurs="24" name="RfBranch">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="4" name="AuPortRef">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="auPortId" type="xs:string" use="required" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="rfBranchId" type="xs:string" use="required" />
+                                                <xs:attribute name="rfPortRef" type="xs:string" use="required" />
+                                                <xs:attribute name="dlAttenuation" type="xs:string" use="required" />
+                                                <xs:attribute name="ulAttenuation" type="xs:string" use="required" />
+                                                <xs:attribute name="dlTrafficDelay" type="xs:string" use="required" />
+                                                <xs:attribute name="ulTrafficDelay" type="xs:string" use="required" />
+                                                <xs:attribute name="dlAttenuationPerFqRange" type="xs:string" default="-1,-1,-1,-1" use="optional" />
+                                                <xs:attribute name="dlTrafficDelayPerFqRange" type="xs:string" default="-1,-1,-1,-1" use="optional" />
+                                                <xs:attribute name="ulAttenuationPerFqRange" type="xs:string" default="-1,-1,-1,-1" use="optional" />
+                                                <xs:attribute name="ulTrafficDelayPerFqRange" type="xs:string" default="-1,-1,-1,-1" use="optional" />
+                                                <xs:attribute default="FALSE" name="vswrSupervisionActive" type="TrueOrFalse" />
+                                                <xs:attribute default="1" name="vswrSupervisionSensitivity">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="1" />
+                                                            <xs:maxInclusive value="100" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="antennaSupervisionActive" default="FALSE" type="TrueOrFalse" use="optional" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" maxOccurs="48" name="AntennaNearUnit">
+                                            <xs:complexType>
+                                                <xs:choice>
+                                                    <xs:element minOccurs="0" maxOccurs="8" name="TmaSubUnit">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="tmaSubUnitId" type="xs:string" use="required" />
+                                                            <xs:attribute name="rfBranchRef" type="xs:string" use="required" />
+                                                            <xs:attribute default="0" name="dlAttenuation">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:int">
+                                                                        <xs:minInclusive value="0" />
+                                                                        <xs:maxInclusive value="20" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute default="0" name="dlTrafficDelay">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:int">
+                                                                        <xs:minInclusive value="0" />
+                                                                        <xs:maxInclusive value="2000" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute default="0" name="ulTrafficDelay">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:int">
+                                                                        <xs:minInclusive value="0" />
+                                                                        <xs:maxInclusive value="2000" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute default="TMA" name="tmaType" type="tmaTypeEnum" use="optional" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element minOccurs="0" maxOccurs="8" ref="RetSubUnit" />
+                                                    <xs:element minOccurs="0" maxOccurs="8" ref="RaeSubUnit" />
+                                                </xs:choice>
+                                                <xs:attribute name="antennaNearUnitId" type="xs:string" use="required" />
+                                                <xs:attribute name="rfPortRef" type="xs:string" use="required" />
+                                                <xs:attribute name="anuType" type="anuTypeEnum" use="optional" />
+                                                <xs:attribute default="1" name="iuantDeviceType" type="iauntDeviceTypeEnum" />
+                                                <xs:attribute name="uniqueId" type="xs:string" use="optional" />
+                                                <xs:attribute name="tmfConfigurationFile" type="xs:string" use="optional" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" maxOccurs="24" name="ExternalTMA">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="2" name="ExtTmaConnector">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="extTmaConnectorId" type="xs:string" use="required" />
+                                                            <xs:attribute name="dlAttenuation" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:int">
+                                                                        <xs:minInclusive value="0" />
+                                                                        <xs:maxInclusive value="500" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="ulGain" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:int">
+                                                                        <xs:minInclusive value="0" />
+                                                                        <xs:maxInclusive value="500" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="dlTrafficDelay" use="optional">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:int">
+                                                                        <xs:minInclusive value="0" />
+                                                                        <xs:maxInclusive value="2000" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="ulTrafficDelay" use="optional">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:int">
+                                                                        <xs:minInclusive value="0" />
+                                                                        <xs:maxInclusive value="2000" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="externalTmaId" type="xs:string" use="required" />
+                                                <xs:attribute name="rfPortRef" type="xs:string" use="required" />
+                                                <xs:attribute default="NO" name="internalPower" type="YesOrNo" />
+                                                <xs:attribute default="NO" name="tmaDegradedSupported" type="YesOrNo" />
+                                                <xs:attribute default="FALSE" name="powerSupervisionSupported" type="TrueOrFalse" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" maxOccurs="2" name="MulticastAntennaBranch">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element minOccurs="0" maxOccurs="8" name="TransceiverRef">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="transceiverId" type="xs:string" use="required" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="multicastAntennaBranchId" type="xs:string" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="TmfConfiguration" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="tmfConfigurationId" type="xs:string" use="required" />
+                                                <xs:attribute name="operatingBand" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="0" />
+                                                            <xs:maxInclusive value="256" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="operatingMode" type="SupportedOperatingMode" use="required" />
+                                                <xs:attribute name="channelNumber1" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="0" />
+                                                            <xs:maxInclusive value="262143" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="antBtoRbsB" type="TrueOrFalse" use="optional" default="FALSE" />
+                                                <xs:attribute name="channelNumber2" use="optional" default="0">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="0" />
+                                                            <xs:maxInclusive value="262143" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="dcMonitoringAntA" type="TrueOrFalse" use="optional" default="FALSE" />
+                                                <xs:attribute name="dcMonitoringAntB" type="TrueOrFalse" use="optional" default="FALSE" />
+                                                <xs:attribute name="dcMonitoringRbsA" type="TrueOrFalse" use="optional" default="FALSE" />
+                                                <xs:attribute name="dcToRetBlocked" type="TrueOrFalse" use="optional" default="TRUE" />
+                                                <xs:attribute name="frequencyDistance" use="optional" default="0">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="0" />
+                                                            <xs:maxInclusive value="200" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="antennaUnitGroupId" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HwGroup" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="hwGroupId" type="xs:string" use="required" />
+                        <xs:attribute name="positionInformation" type="xs:string" use="optional" />
+                        <xs:attribute name="userLabel" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

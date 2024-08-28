@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.autoprovisioning.macro</groupId>
+        <artifactId>ap-data-model-macro</artifactId>
+        <version>1.106.227</version>
+    </parent>
+
+    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+    <artifactId>ERICapdatamacro_CXP9030537</artifactId>
+    <packaging>${rpm.packaging}</packaging>
+    <name>[${project.parent.artifactId}] CXP module</name>
+
+    <properties>
+        <publish_artifact>true</publish_artifact>
+        <media.category>model</media.category>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>Copy ERBS JARs of AP Model to ERICapdatamacro</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <!-- Copy the model jars into target/ap/models to be included in RPM -->
+                                <artifactItem>
+                                    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                                    <artifactId>ap-data-model-erbs-model</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>target/ap/models</outputDirectory>
+                                    <destFileName>ap-data-model-erbs-model-${project.version}.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rpm-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <properties combine.self="override" />
+                    <copyright>2014 Ericsson AB All rights reserved</copyright>
+                    <group>ERI-NMS</group>
+                    <vendor>Ericsson AB</vendor>
+                    <mappings>
+                        <mapping>
+                            <!-- MDT requires JARs to be dropped off in this location -->
+                            <directory>/var/opt/ericsson/ERICmodeldeployment/data/install</directory>
+                            <filemode>754</filemode>
+                            <!-- This directory should only be accessed through mdtuser -->
+                            <username>mdtuser</username>
+                            <groupname>mdt</groupname>
+                            <configuration>false</configuration>
+                            <directoryIncluded>false</directoryIncluded>
+                            <recurseDirectories>true</recurseDirectories>
+                            <!-- Copy files from build 'location' into RPM -->
+                            <sources>
+                                <source>
+                                    <location>target/ap/models</location>
+                                    <includes>
+                                        <include>**/*</include>
+                                    </includes>
+                                </source>
+                            </sources>
+                        </mapping>
+                        <mapping>
+                            <directory>${vm.install-path}</directory>
+                            <filemode>500</filemode>
+                            <username>${jboss-username}</username>
+                            <groupname>${jboss-groupname}</groupname>
+                            <dependency>
+                                <includes>
+                                    <!-- Update for WAR/RAR as needed -->
+                                    <include>${project.groupId}:ap-data-model-erbs-model-jar</include>
+                                </includes>
+                            </dependency>
+                        </mapping>
+                    </mappings>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.ericsson.oss.itpf.deployment</groupId>
+                <artifactId>deployment-descriptor-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>configurable-entity</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configEntity>
+                        <stereotype>MODEL_PKG</stereotype>
+                        <singleton>true</singleton>
+                        <parameters>
+                            <property name="shortName" defaultValue="ap-data-model-macro" />
+                            <itemType name="model-package">
+                                <property name="name" defaultValue="ERICapdatamacro_CXP9030537" />
+                            </itemType>
+                        </parameters>
+                    </configEntity>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${version.owasp.dependency.check}</version>
+                <configuration>
+                    <skipProvidedScope>true</skipProvidedScope>
+                    <skipRuntimeScope>true</skipRuntimeScope>
+                    <failBuildOnCVSS>1</failBuildOnCVSS>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

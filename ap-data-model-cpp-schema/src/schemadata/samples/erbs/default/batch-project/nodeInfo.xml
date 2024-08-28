@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sample files are for reference only and need to be reworked to suit network configuration requirements -->
+<!-- For more information about the tags in this file, refer to the ENM Auto Provisioning Online Help Center -->
+<nodeInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="NodeInfo.xsd">
+
+    <name>%NodeName%</name>
+    <nodeIdentifier>1998-184-092</nodeIdentifier>
+    <ipAddress>%NodeIpAddress%</ipAddress>
+    <nodeType>ERBS</nodeType>
+    <userLabel>%UserLabel%</userLabel>
+    <hardwareSerialNumber>%HardwareSerialNumber%</hardwareSerialNumber>
+    <timeZone>GB-Eire</timeZone>
+
+    <autoIntegration>
+        <upgradePackageName>CXP102051_1_R4D25</upgradePackageName>
+        <unlockCells>true</unlockCells>
+        <uploadCVAfterIntegration>true</uploadCVAfterIntegration>
+    </autoIntegration>
+
+    <license>
+        <installLicense>true</installLicense>
+        <activateLicense>true</activateLicense>
+    </license>
+
+    <security>
+        <minimumSecurityLevel>1</minimumSecurityLevel>
+        <optimumSecurityLevel>2</optimumSecurityLevel>
+        <enrollmentMode>SCEP</enrollmentMode>
+        <ipSecurity>
+            <ipSecLevel>CUS</ipSecLevel>
+            <subjectAltNameType>IPV4</subjectAltNameType>
+            <subjectAltName>1.2.3.4</subjectAltName>
+        </ipSecurity>
+        <!-- Target Groups is optional see Target Group Management for more information -->
+        <targetGroups>
+            <targetGroup>SampleTargetGroup1</targetGroup>
+            <targetGroup>SampleTargetGroup2</targetGroup>
+        </targetGroups>
+    </security>
+
+    <!--location configuration is optional -->
+    <location>
+        <latitude>53.42911</latitude>
+        <longitude>-7.94398</longitude>
+    </location>
+
+    <users>
+        <secureUser>
+            <name>secureUser</name>
+            <password>securePassword</password>
+        </secureUser>
+    </users>
+
+    <supervision>
+        <fm>disabled</fm>
+        <pm>disabled</pm>
+        <inventory>disabled</inventory>
+    </supervision>
+
+    <dhcp>
+        <initialIpAddress>192.168.72.10/30</initialIpAddress>
+        <defaultRouter>192.168.72.66</defaultRouter>
+        <ntpServer>192.168.72.20</ntpServer>
+        <ntpServer>192.168.72.22</ntpServer>
+        <dnsServer>192.168.72.30</dnsServer>
+    </dhcp>
+
+    <artifacts>
+        <siteBasic>siteBasic.xml</siteBasic>
+        <siteInstallation>siteInstallation.xml</siteInstallation>
+        <siteEquipment>siteEquipment.xml</siteEquipment>
+        <!-- Configurations are applied in order defined in xml -->
+        <configurations>
+            <configuration>Bulk-CM-Configuration-file.xml</configuration>
+        </configurations>
+    </artifacts>
+</nodeInfo>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.autoprovisioning.macro</groupId>
+        <artifactId>ap-data-model-macro</artifactId>
+        <version>1.106.227</version>
+    </parent>
+
+    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+    <artifactId>ap-data-model-erbs-jar</artifactId>
+    <name>[${project.parent.artifactId}] ERBS JAR module</name>
+
+    <dependencies>
+        <!-- ENM Dependencies -->
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.modeling</groupId>
+            <artifactId>modeling-annotation-jar</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.model.ned</groupId>
+            <artifactId>network-element-definition-model-jar</artifactId>
+            <version>${version.network-element-definition-model-jar}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.nms.mediation</groupId>
+            <artifactId>core-mediation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>../ap-data-model-erbs-model/model-build</directory>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <!-- Unpack ap-data-model-core sources start -->
+            <!-- This plugin is to extract the ap-data-model-core model source due to the java class depenedency on the abstract classes in it. Ensure 
+                to update the ap-data-model-jar stable release jar version property -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-ap-data-model-erbs-jar</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+                                    <artifactId>ap-data-model-core-jar</artifactId>
+                                    <version>${version.ap.data.model.core}</version>
+                                    <classifier>sources</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>target/apdatacore_sources</outputDirectory>
+                                    <includes>**/*.java</includes>
+                                    <excludes>**/META-INF/*, **/cache/*</excludes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- This plugin is to include the ap data core sources in classpath, src extracted by the above plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source-ap-data-model-erbs-jar</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/apdatacore_sources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- End unpack sources from ap-data-model-core -->
+            <!-- This invokes the Annotation Processor. It runs against all the compiled classes part of this jar module. -->
+            <plugin>
+                <groupId>com.ericsson.oss.itpf.modeling.tools</groupId>
+                <artifactId>modeling-annotation-processor-jar</artifactId>
+                <version>${version.annotation-processor}</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>annoproc</goal>
+                        </goals>
+                        <configuration>
+                            <modelBuildDir>../ap-data-model-erbs-model/model-build</modelBuildDir>
+                            <inclusionPatterns>
+                                <includes>com.ericsson.oss.services.ap.model.erbs.**</includes>
+                            </inclusionPatterns>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.ericsson.oss.services.model.ned</groupId>
+                        <artifactId>network-element-definition-model-jar</artifactId>
+                        <version>${version.network-element-definition-model-jar}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.ericsson.nms.mediation</groupId>
+                        <artifactId>core-mediation-api</artifactId>
+                        <version>${version.mediation.engine.api}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/model/erbs/*</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                     <author>false</author>
+                     <failOnError>false</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ProductNumber  = "CXC1733281/24"       R-State  = "R29AS"
+DocumentNumber = "1/155 19-CSH 103 701"
+Node version: 16A
+
+File    : SummaryFile.xsd
+Purpose : Schema file for Summary File
+
+Modified: October 22 2015
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+    <xs:element name="AutoIntegrationRbsSummaryFile">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Format">
+                    <xs:annotation>
+                        <xs:documentation>Contains information about the revision of the schema.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="revision" fixed="H">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="F"/>
+                                    <xs:enumeration value="G"/>
+                                    <xs:enumeration value="H"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ConfigurationFiles" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Contains information about the file paths to the files located on the SMRS.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="siteBasicFilePath" type="xs:string" use="required"/>
+                        <xs:attribute name="siteEquipmentFilePath" type="xs:string" use="required"/>
+                        <xs:attribute name="licensingKeyFilePath" type="xs:string" use="optional"/>
+                        <xs:attribute name="upgradePackageFilePath" type="xs:string" use="optional"/>
+                        <xs:attribute name="initialSecurityConfigurationFilePath" type="xs:string" use="optional"/>
+                        <xs:attribute name="integrationBasicPackageFilePath" type="xs:string" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

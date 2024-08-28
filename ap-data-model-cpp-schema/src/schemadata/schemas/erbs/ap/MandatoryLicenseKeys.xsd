@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="licenseKeys" type="LicenseKeys" />
+
+    <xs:complexType name="LicenseKeys">
+        <xs:sequence>
+            <xs:element name="licenseKey" type="StringWithoutWhiteSpace" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="StringWithoutWhiteSpace">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S*" /> <!-- No whitespace permitted -->
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

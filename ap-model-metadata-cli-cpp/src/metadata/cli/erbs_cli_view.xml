@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cliViewMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="ERBS" xsi:noNamespaceSchemaLocation="cliViewMetadata.xsd">
+    <view id="project">
+        <viewitem type="type:Project">
+            <group>
+                <table style="vertical">
+                    <attribute name="attributes.projectName">
+                        <label>Project Name</label>
+                    </attribute>
+                    <attribute name="attributes.creator">
+                        <label>Creator</label>
+                    </attribute>
+                    <attribute name="attributes.creationDate">
+                        <label>Creation Date</label>
+                    </attribute>
+                    <attribute name="attributes.description">
+                        <label>Description</label>
+                    </attribute>
+                    <attribute name="attributes.nodeQuantity">
+                        <label>Node Quantity</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem type="type:Node">
+            <group>
+                <table>
+                    <attribute name="attributes.nodeName">
+                        <label>Node Name</label>
+                    </attribute>
+                    <attribute name="attributes.nodeType">
+                        <label>Node Type</label>
+                    </attribute>
+                    <attribute name="attributes.nodeIdentifier">
+                        <label>Node Identifier</label>
+                    </attribute>
+                    <attribute name="attributes.ipAddress">
+                        <label>IP Address</label>
+                    </attribute>
+                    <attribute name="attributes.deployment">
+                        <label>Deployment</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+    </view>
+
+    <view id="projects">
+        <viewitem type="type:Project">
+            <group>
+                <table>
+                    <attribute name="attributes.projectName">
+                        <label>Project Name</label>
+                    </attribute>
+                    <attribute name="attributes.nodeQuantity">
+                        <label>Node Quantity</label>
+                    </attribute>
+                    <attribute name="attributes.creator">
+                        <label>Creator</label>
+                    </attribute>
+                    <attribute name="attributes.creationDate">
+                        <label>Creation Date</label>
+                    </attribute>
+                    <attribute name="attributes.description">
+                        <label>Description</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+    </view>
+
+    <view id="node">
+        <viewitem type="type:Node">
+            <group>
+                <table style="vertical">
+                    <attribute name="attributes.nodeName">
+                        <label>Node Name</label>
+                    </attribute>
+                    <attribute name="attributes.projectName">
+                        <label>Project Name</label>
+                    </attribute>
+                    <attribute name="attributes.deployment">
+                        <label>Deployment</label>
+                    </attribute>
+                    <attribute name="attributes.ipAddress">
+                        <label>IP Address</label>
+                    </attribute>
+                    <attribute name="attributes.nodeIdentifier">
+                        <label>Node Identifier</label>
+                    </attribute>
+                    <attribute name="attributes.nodeType">
+                        <label>Node Type</label>
+                    </attribute>
+                    <attribute name="attributes.userLabel">
+                        <label>User Label</label>
+                    </attribute>
+                    <attribute name="attributes.hardwareSerialNumber">
+                        <label>Hardware Serial Number</label>
+                    </attribute>
+                    <attribute name="attributes.ossPrefix">
+                        <label>OSS Prefix</label>
+                    </attribute>
+                    <attribute name="attributes.timeZone">
+                        <label>Time Zone</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem type="type:AutoIntegrationOptions">
+            <group>
+                <table style="vertical" heading="Integration Settings">
+                    <attribute name="attributes.unlockCells" tabbed="true">
+                        <label>Unlock Cells</label>
+                    </attribute>
+                    <attribute name="attributes.basicPackageName" tabbed="true">
+                        <label>Basic Package Name</label>
+                    </attribute>
+                    <attribute name="attributes.upgradePackageName" tabbed="true">
+                        <label>Upgrade Package Name</label>
+                    </attribute>
+                    <attribute name="attributes.uploadCVAfterIntegration" tabbed="true">
+                        <label>Upload CV After Integration</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem type="type:LicenseOptions">
+            <group>
+                <table style="vertical" heading="License Settings">
+                    <attribute name="attributes.licenseFile" tabbed="true">
+                        <label>License File</label>
+                    </attribute>
+                    <attribute name="attributes.activateLicense" tabbed="true">
+                        <label>Activate License</label>
+                    </attribute>
+                    <attribute name="attributes.installLicense" tabbed="true">
+                        <label>Install License</label>
+                    </attribute>
+                    <attribute name="attributes.mandatoryLicenseKeys" tabbed="true">
+                        <label>Mandatory License Keys</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem type="type:Security">
+            <group>
+                <table style="vertical" heading="Security Settings">
+                    <attribute name="attributes.ipSecLevel" tabbed="true">
+                        <label>IP Sec Level</label>
+                    </attribute>
+                    <attribute name="attributes.minimumSecurityLevel" tabbed="true">
+                        <label>Minimum Security Level</label>
+                    </attribute>
+                    <attribute name="attributes.optimumSecurityLevel" tabbed="true">
+                        <label>Optimum Security Level</label>
+                    </attribute>
+                    <attribute name="attributes.enrollmentMode" tabbed="true">
+                        <label>Enrollment Mode</label>
+                    </attribute>
+                    <attribute name="attributes.subjectAltName" tabbed="true">
+                        <label>Subject Alt Name</label>
+                    </attribute>
+                    <attribute name="attributes.subjectAltNameType" tabbed="true">
+                        <label>Subject Alt Name Type</label>
+                    </attribute>
+                    <attribute name="attributes.targetGroups" tabbed="true">
+                        <label>Target Groups</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem moStruct="NodeLocation" type="type:Node">
+            <group>
+                <table style="vertical" heading="Location Settings" filter="item.attributes.get('nodeLocation') != null">
+                    <attribute name="attributes.nodeLocation.latitude" tabbed="true">
+                        <label>Latitude</label>
+                    </attribute>
+                    <attribute name="attributes.nodeLocation.longitude" tabbed="true">
+                        <label>Longitude</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem type="type:SupervisionOptions">
+            <group>
+                <table style="vertical" heading="Supervision Settings">
+                    <attribute name="attributes.fm" tabbed="true">
+                        <label>FM Supervision</label>
+                    </attribute>
+                    <attribute name="attributes.pm" tabbed="true">
+                        <label>PM Supervision</label>
+                    </attribute>
+                    <attribute name="attributes.inventory" tabbed="true">
+                        <label>Inventory Supervision</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem type="type:NodeDhcp">
+            <group>
+                <table style="vertical" heading="DHCP Settings">
+                    <attribute name="attributes.initialIpAddress" tabbed="true">
+                        <label>Initial ip address</label>
+                    </attribute>
+                    <attribute name="attributes.defaultRouter" tabbed="true">
+                        <label>Default Router</label>
+                    </attribute>
+                    <attribute name="attributes.ntpServer" tabbed="true">
+                        <label>NTP Server</label>
+                    </attribute>
+                    <attribute name="attributes.dnsServer" tabbed="true">
+                        <label>DNS Server</label>
+                    </attribute>
+                </table>
+            </group>
+        </viewitem>
+        <viewitem type="type:NodeArtifact">
+            <table style="listWithDynamicLabel" heading="Integration Artifacts" filter="!((item.attributes.get('type') == 'configuration')
+            || (item.attributes.get('type') == 'MandatoryLicenseKeys') || (item.attributes.get('type') == 'licenseFile'))">
+                <attribute name="attributes.type" renderer="camel" tabbed="true" />
+                <attribute name="attributes.name" renderer="xmlFile" />
+            </table>
+            <table style="list" filter="item.attributes.get('type') == 'configuration'" heading="Configurations">
+                <attribute name="attributes.name" tabbed="true" renderer="xmlFile" />
+            </table>
+        </viewitem>
+    </view>
+</cliViewMetadata>
